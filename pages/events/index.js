@@ -1,10 +1,12 @@
 
 import Layout from "@/components/Layout";
-import {API_URL} from "@/config/index";
+import {API_URL,PER_PAGE} from "@/config/index";
 import EventItem from "@/components/EventItem";
+import Pagination from "@/components/Pagination";
 
-export default function EventsPage({events}) {
+export default function EventsPage({events,total, page}) {
 
+    const lastPage = Math.ceil(total / PER_PAGE)
     return (
 
         <Layout>
@@ -17,22 +19,34 @@ export default function EventsPage({events}) {
                 )
 
             )}
-
-
-
+            <Pagination page={page} total={total} />
 
         </Layout>
     )
 }
 
-export async function getStaticProps() {
-    const res = await fetch(`${API_URL}/events?_sort=date:ASC`)
-    const events = await res.json()
-    console.log(events)
+export async function getServerSideProps({query:{page = 1}}) {
+
+    // Calculate start page
+    const start = +page === 1 ? 0 : (+page -1) * PER_PAGE
+
+    //Fetch total count
+    const totalRes = await fetch(`${API_URL}/events/count`)
+    const total = await totalRes.json()
+    console.log(total)
+
+
+    //Fetch events
+    const eventRes = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}`)
+    const events = await eventRes.json()
+
 
     return{
-        props:{events},
-        revalidate:2
+        props:{events,
+        page: +page,
+            total
+        },
+
     }
 
 }

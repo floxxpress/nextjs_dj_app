@@ -18,6 +18,13 @@
     width: 100%;
     margin: 20px 0 30px;
 }
+.file{
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: lightgrey;
+    padding: 5px 0;
+}
 
 .grid{
     display: grid;
