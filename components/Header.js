@@ -17,7 +17,7 @@ function Header() {
             <nav>
                 <ul>
                     <li><Link href='/events'><a>Events</a></Link></li>
-                    <li><Link href='/accounts/dashboard'><a>Dashboard</a></Link></li>
+                    <li><Link href='/account/dashboard'><a>Dashboard</a></Link></li>
                     {user ?
                         //If Logged In
                         <>

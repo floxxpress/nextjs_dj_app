@@ -12,6 +12,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
 
     const {login,error} = useContext(AuthContext)
+    useEffect(()=> error && toast.error(error))
 
     function handleSubmit(e) {
         e.preventDefault()
