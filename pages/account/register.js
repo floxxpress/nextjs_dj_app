@@ -14,6 +14,7 @@ const RegisterPage = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const {register,error} = useContext(AuthContext)
+    useEffect(()=> error && toast.error(error))
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -50,7 +51,7 @@ const RegisterPage = () => {
                         <label htmlFor="confirm-password">Confirm Password</label>
                         <input type="password"  id="confirm-password" value={confirmPassword} onChange={(e) =>setConfirmPassword(e.target.value)}/>
                     </div>
-                    <input type="submit" value="Login" className={'btn'}/>
+                    <input type="submit" value="Register" className={'btn'}/>
                 </form>
                 <p>Already have an account? <Link href={'/account/login'}>Login</Link> </p>
             </div>

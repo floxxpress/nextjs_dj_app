@@ -17,11 +17,12 @@ function Header() {
             <nav>
                 <ul>
                     <li><Link href='/events'><a>Events</a></Link></li>
-                    <li><Link href='/account/dashboard'><a>Dashboard</a></Link></li>
                     {user ?
                         //If Logged In
                         <>
-                        <li><Link href='/events/add'><a>Add Event</a></Link></li>
+                            <li><Link href='/account/dashboard'><a>Dashboard</a></Link></li>
+
+                            <li><Link href='/events/add'><a>Add Event</a></Link></li>
                             <li><button onClick={()=>logout()} className={'btn-secondary btn-icon'}>
                                 <FaSignOutAlt />
                                 Log Out</button></li>
